@@ -1,10 +1,9 @@
 
-var emptyInput1 = document.getElementById('empty-input1');
-var emptyInput2 = document.getElementById('empty-input2');
+const emptyInput = document.getElementById('empty-input');
 
 const searchBtn = document.getElementById('search-button');
 
-const searchCityInput = document.getElementById("search-city");
+var searchCityInput = document.getElementById("search-city");
 
 searchCityInput.addEventListener("keypress", (event) =>{
     if (event.key === "Enter"){
@@ -13,13 +12,13 @@ searchCityInput.addEventListener("keypress", (event) =>{
 });
 
 const searchButton = () => {
-    const searchCityInput = document.getElementById('search-city');
-    const cityName = searchCityInput.value;
-    emptyInput1.textContent = "";
+    var searchCityInput = document.getElementById('search-city');
+    var cityName = searchCityInput.value;
+    emptyInput.textContent = "";
 
     if (cityName === "") {
-        emptyInput1.innerHTML = `
-        <h4 class = "text-start text-danger mt-3">Please enter a city name to search....
+        emptyInput.innerHTML = 
+        `<h4 class = "text-start text-danger mt-2">Please enter a city name to search....
         </h4>
         `;
     }
@@ -30,7 +29,6 @@ const searchButton = () => {
 const loadSearch = async (city) => {
     const api = "08f8fc54e1ca62d09c79db83e6882e82";
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}&units=metric`;
-    console.log(URL)
     const res = await fetch(URL);
     const data = await res.json();
     displayWeather(data);
@@ -38,7 +36,7 @@ const loadSearch = async (city) => {
 
 const displayWeather = (cityWeather) => {
     if (cityWeather.message=== "city not found"){
-        emptyInput1.innerHTML = ` <h4 class="text-start text-danger mt-3"> 
+        emptyInput.innerHTML = ` <h4 class="text-start text-danger mt-3"> 
         No weather data found ! </h4>
         `;
     }
@@ -51,19 +49,19 @@ const displayWeather = (cityWeather) => {
 
     const div = document.createElement("div");
 
-
     div.innerHTML = `
-        <h4 class="fs-2">${cityWeather.name}, ${cityWeather.sys.country}</h4>
-        <h6>${localDate.fullDate}</h6>
-        <img src="http://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png" alt="">
-        <h5 class="fs-1">${cityWeather.main.temp} &deg;C</h5>
-        <h5>${cityWeather.weather[0].main}</h5>
-        <h5><span class="me-3">Sunrise:
-        ${sunRiseTime.time12h}</span> &
-        
-        <h5><span class="ms-3">Sunset:
-        ${sunSetTime.time12h}</span></h5>
-        
+        <h4 class="fs-2 text-center">${cityWeather.name}, ${cityWeather.sys.country}</h4>
+        <h6 class="text-center">${localDate.fullDate}</h6>
+        <img class="offset-5" src="http://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png" 
+        alt="">
+        <h5 class="fs-1 text-center">${cityWeather.main.temp} &deg;C</h5>
+        <h5 class="text-center">${cityWeather.weather[0].main}</h5>
+        <h5 class="text-center"><span>Sunrise:
+        ${sunRiseTime.time12h}</span> 
+                    &
+        <span>Sunset:
+        ${sunSetTime.time12h}</span>
+        </h5>
     `;
     container.appendChild(div);
     

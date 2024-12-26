@@ -52,6 +52,7 @@ const displayWeather = (cityWeather) => {
     const timeZone = cityWeather.timezone/3600;
 
     const div = document.createElement("div");
+// all connected to div element
 
     div.innerHTML = `
         <h4 class="fs-2 text-center">${cityWeather.name}, ${cityWeather.sys.country}</h4>

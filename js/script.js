@@ -57,7 +57,7 @@ const displayWeather = (cityWeather) => {
     div.innerHTML = `
         <h4 class="fs-2 text-center">${cityWeather.name}, ${cityWeather.sys.country}</h4>
         <h6 class="text-center">${localDate.fullDate}</h6>
-        <img class="offset-5 pe-3" src="http://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png" 
+        <img class="offset-5 pe-5" src="http://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png" 
         alt="">
         <h5 class="fs-1 text-center">${cityWeather.main.temp} &deg;C</h5>
         <h5 class="text-center">${cityWeather.weather[0].main}</h5>
